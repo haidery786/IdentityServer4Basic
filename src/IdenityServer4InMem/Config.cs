@@ -1,7 +1,4 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
-
-
+﻿using IdentityServer4;
 using IdentityServer4.Models;
 using System.Collections.Generic;
 
@@ -19,8 +16,8 @@ namespace IdenityServer4InMem
         public static IEnumerable<ApiScope> ApiScopes =>
             new ApiScope[]
             {
-                new ApiScope("scope1"),
-                new ApiScope("scope2"),
+                new ApiScope("api1.read", "Read Access to API #1"),
+                new ApiScope("api1.write", "Write Access to API #1")
             };
 
         public static IEnumerable<Client> Clients =>
@@ -41,17 +38,23 @@ namespace IdenityServer4InMem
                 // interactive client using code flow + pkce
                 new Client
                 {
-                    ClientId = "mvc",
-                    ClientSecrets = new List<Secret> {new Secret("SecretHublSoftPassword".Sha256())},
-
+                    ClientId = "oidcClient",
+                    ClientName = "Example Client Application",
+                    ClientSecrets = new List<Secret> {new Secret("SuperSecretPassword".Sha256())}, // change me!
+                    
                     AllowedGrantTypes = GrantTypes.Code,
+                    RedirectUris = new List<string> {"https://localhost:5002/signin-oidc"},
+                    AllowedScopes = new List<string>
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.Email,
+                        "role",
+                        "api1.read"
+                    },
 
-                    RedirectUris = { "http://localhost:5002/signin-oidc" },
-                    FrontChannelLogoutUri = "http://localhost:5002/signout-oidc",
-                    PostLogoutRedirectUris = { "http://localhost:5002/signout-callback-oidc" },
-
-                    AllowOfflineAccess = true,
-                    AllowedScopes = { "openid", "profile", "scope2" }
+                    RequirePkce = true,
+                    AllowPlainTextPkce = false
                 },
                 // interactive ASP.NET Core MVC client
                 new Client

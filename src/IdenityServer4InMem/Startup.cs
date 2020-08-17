@@ -1,14 +1,9 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
-
-
-using IdentityServer4;
+﻿using IdentityServer4;
 using IdentityServerHost.Quickstart.UI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 namespace IdenityServer4InMem
 {
@@ -26,7 +21,7 @@ namespace IdenityServer4InMem
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-          
+
             #region Identity Server 4 Configuration
             var builder = services.AddIdentityServer(options =>
             {
@@ -44,7 +39,7 @@ namespace IdenityServer4InMem
             builder.AddInMemoryIdentityResources(Config.IdentityResources);
             builder.AddInMemoryApiScopes(Config.ApiScopes);
             builder.AddInMemoryClients(Config.Clients);
-            
+
             #endregion
 
             // not recommended for production - you need to store your key material somewhere secure
@@ -61,38 +56,21 @@ namespace IdenityServer4InMem
                     options.ClientSecret = "copy client secret from Google here";
                 });
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy",
-                    builder => builder.AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader());
-            });
         }
 
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app)
         {
-            if (Environment.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseHsts();
-            app.UseHttpsRedirection();
-            app.UseCors("CorsPolicy");
+            app.UseDeveloperExceptionPage();
 
             app.UseStaticFiles();
             app.UseRouting();
 
             // Identity Server 4 Configuration
-            app.UseAuthentication();
             app.UseIdentityServer();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapDefaultControllerRoute();
-            });
+            app.UseEndpoints(endpoints => endpoints.MapDefaultControllerRoute());
         }
     }
 }
