@@ -1,16 +1,16 @@
-## IdentityServer4Basic
+ IdentityServer4Basic
 Implementing IdentityServer4 on ASP.NET Core and .NET Core
 
-##Features
+Features
  ASP.NET Core Web Application template is used to develop IdentityServer4InMem by setting configuration in the middleware.
  Users, clients and scopes are all set in memory for this project.
  ASP.net Core MVC Web Application template is used to develop client 
 
-##Pre-requisites
+Pre-requisites
 .Net core 3.1 SDK
 Visual studio 2019 OR VSCode with C# extension
  
-##Installation
+Installation
 Clone the repo:
 git clone https://github.com/haidery786/IdentityServer4Basic.git
 
