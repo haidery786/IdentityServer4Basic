@@ -49,7 +49,6 @@ namespace IdenityServer4InMem
 
             // not recommended for production - you need to store your key material somewhere secure
             builder.AddDeveloperSigningCredential();
-
             services.AddAuthentication()
                 .AddGoogle(options =>
                 {
@@ -61,6 +60,14 @@ namespace IdenityServer4InMem
                     options.ClientId = "copy client ID from Google here";
                     options.ClientSecret = "copy client secret from Google here";
                 });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+            });
         }
 
         public void Configure(IApplicationBuilder app)
@@ -70,8 +77,11 @@ namespace IdenityServer4InMem
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseStaticFiles();
+            app.UseHsts();
+            app.UseHttpsRedirection();
+            app.UseCors("CorsPolicy");
 
+            app.UseStaticFiles();
             app.UseRouting();
 
             // Identity Server 4 Configuration
