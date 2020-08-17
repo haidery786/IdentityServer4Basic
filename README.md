@@ -21,4 +21,4 @@ dotnet restore IdentityServer4Basic.sln
 2. Run both the MvcClient.Portal and IdentityServer4InMem projects together by setting up to run multiple projects from properties of sln.
 3. Click on Privacy (secure) link, it will redirect to Identity server to authenticate and redirect back.
 
-Please use official IdServer4 documentation at this link for detail at https://identityserver4.readthedocs.io/en/latest/quickstarts/2_interactive_aspnetcore.html
+Please use official IdServer4 documentation at this link for detail https://identityserver4.readthedocs.io/en/latest/quickstarts/2_interactive_aspnetcore.html
