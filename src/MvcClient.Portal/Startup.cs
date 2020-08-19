@@ -25,6 +25,8 @@ namespace MvcClient.Portal
                     options.ResponseType = "code";
                     options.UsePkce = true;
                     options.ResponseMode = "query";
+                    options.SignedOutRedirectUri = "http://localhost:5002";
+                    options.SignedOutCallbackPath = "/";
 
                     // options.CallbackPath = "/signin-oidc"; // default redirect URI
 

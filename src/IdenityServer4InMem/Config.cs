@@ -44,6 +44,7 @@ namespace IdenityServer4InMem
                     
                     AllowedGrantTypes = GrantTypes.Code,
                     RedirectUris = new List<string> {"https://localhost:5002/signin-oidc"},
+                    
                     AllowedScopes = new List<string>
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
@@ -54,7 +55,8 @@ namespace IdenityServer4InMem
                     },
 
                     RequirePkce = true,
-                    AllowPlainTextPkce = false
+                    AllowPlainTextPkce = false,
+                    PostLogoutRedirectUris = { "https://localhost:5002"}
                 },
                 // interactive ASP.NET Core MVC client
                 new Client

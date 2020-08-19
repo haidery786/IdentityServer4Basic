@@ -25,7 +25,8 @@ namespace MvcClient.Portal.Controllers
 
         public IActionResult Logout()
         {
-            return SignOut("cookie", "oidc");
+            Microsoft.AspNetCore.Authentication.AuthenticationProperties properties = new Microsoft.AspNetCore.Authentication.AuthenticationProperties { RedirectUri = "https://localhost:5002" };
+            return SignOut(properties, "cookie", "oidc");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
