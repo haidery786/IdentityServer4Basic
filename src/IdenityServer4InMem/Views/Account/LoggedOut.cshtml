@@ -2,8 +2,7 @@
 
 @{ 
     // set this so the layout rendering sees an anonymous user
-    ViewData["signed-out"] = true;
-    Model.AutomaticRedirectAfterSignOut = true;
+    ViewData["signed-out"] = true;    
     Model.PostLogoutRedirectUri = "https://localhost:5002";
 }
 
