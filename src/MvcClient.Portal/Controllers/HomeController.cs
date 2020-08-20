@@ -10,12 +10,12 @@ namespace MvcClient.Portal.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IConfiguration configuration;
+        private readonly IConfiguration _configuration;
 
         public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
         {
             _logger = logger;
-            this.configuration = configuration;
+            _configuration = configuration;
         }
 
         public IActionResult Index()
