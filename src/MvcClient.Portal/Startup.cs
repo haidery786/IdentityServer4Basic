@@ -33,14 +33,15 @@ namespace MvcClient.Portal
                     options.ResponseType = "code";
                     options.UsePkce = true;
                     options.ResponseMode = "query";
-                    options.SignedOutRedirectUri = _configuration.GetValue<string>("ComeBackUri");                    
-
+                    options.SignedOutRedirectUri = _configuration.GetValue<string>("ComeBackUri");
+System.Console.WriteLine(options.SignedOutRedirectUri);
                     // options.CallbackPath = "/signin-oidc"; // default redirect URI
 
                     //options.Scope.Add("email"); // default scope
                     //options.Scope.Add("profile"); // default scope
                     options.Scope.Add("api1.read");
                     options.SaveTokens = true;
+                    options.SignInScheme = "cookie";
                 });
         }
 
