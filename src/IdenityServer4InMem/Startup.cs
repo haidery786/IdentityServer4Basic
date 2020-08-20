@@ -38,7 +38,7 @@ namespace IdenityServer4InMem
             // in-memory, code config
             builder.AddInMemoryIdentityResources(Config.IdentityResources);
             builder.AddInMemoryApiScopes(Config.ApiScopes);
-            builder.AddInMemoryClients(Config.Clients);
+            builder.AddInMemoryClients(Config.Clients);            
 
             #endregion
 
