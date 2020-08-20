@@ -56,7 +56,7 @@ namespace IdenityServer4InMem
 
                     RequirePkce = true,
                     AllowPlainTextPkce = false,
-                    PostLogoutRedirectUris = { "https://localhost:5002"}
+                    PostLogoutRedirectUris = { "https://localhost:5002/signout-callback-oidc" }
                 },
                 // interactive ASP.NET Core MVC client
                 new Client

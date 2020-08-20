@@ -28,7 +28,7 @@ namespace MvcClient.Portal.Controllers
 
         public IActionResult Logout()
         {
-            Microsoft.AspNetCore.Authentication.AuthenticationProperties properties = new Microsoft.AspNetCore.Authentication.AuthenticationProperties { RedirectUri = configuration.GetValue<string>("ComeBackUri") };
+            Microsoft.AspNetCore.Authentication.AuthenticationProperties properties = new Microsoft.AspNetCore.Authentication.AuthenticationProperties { RedirectUri = _configuration.GetValue<string>("ComeBackUri") };
             return SignOut(properties, "cookie", "oidc");
         }
 
