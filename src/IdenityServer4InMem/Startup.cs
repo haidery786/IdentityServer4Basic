@@ -68,8 +68,7 @@ namespace IdenityServer4InMem
 
             // Identity Server 4 Configuration
             app.UseIdentityServer();
-            app.UseAuthorization();
-            
+            app.UseAuthorization();            
 
             app.UseEndpoints(endpoints => endpoints.MapDefaultControllerRoute());
         }
