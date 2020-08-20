@@ -33,8 +33,7 @@ namespace IdenityServer4InMem
                 // see https://identityserver4.readthedocs.io/en/latest/topics/resources.html
                 options.EmitStaticAudienceClaim = true;
             })
-                .AddTestUsers(TestUsers.Users)
-                ;
+                .AddTestUsers(TestUsers.Users);
 
             // in-memory, code config
             builder.AddInMemoryIdentityResources(Config.IdentityResources);
@@ -45,7 +44,7 @@ namespace IdenityServer4InMem
 
             // not recommended for production - you need to store your key material somewhere secure
             builder.AddDeveloperSigningCredential();
-            services.AddAuthentication()                
+            services.AddAuthentication()
                 .AddGoogle(options =>
                 {
                     options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
@@ -55,7 +54,7 @@ namespace IdenityServer4InMem
                     // set the redirect URI to https://localhost:5001/signin-google
                     options.ClientId = "copy client ID from Google here";
                     options.ClientSecret = "copy client secret from Google here";
-                });                
+                });
 
         }
 
